@@ -36,8 +36,8 @@ function snakeInitialize() {
     snakeLenght = 5;
     snakeSize = 50;
     
-    for(var index = 0; index < snakeLenght; index++) {
-       snake.puch( {
+    for(var index = snakeLenght - 1; index >= 0; index--) {
+       snake.push( {
            x: index,
            y: 0
        }); 
@@ -47,11 +47,12 @@ function snakeInitialize() {
 function snakeDraw() {
     for(var index = 0; index < snake.lenght; index++){
         contex.fillstyle = 'white';
-        conrex.fillrect(snake[index].x * snakeSize, snake[index].y * snakeSize, snakeSize, snakeSize);
+        conrex.fillRect(snake[index].x * snakeSize, snake[index].y * snakeSize, snakeSize, snakeSize);
     }
     
 }
 
 function snakeUpdate() {
-    
+    var snakeHeadX = snake[0].x;
+    var snakeHeadY = snake[0].y;
 }
