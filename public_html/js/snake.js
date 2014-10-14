@@ -24,6 +24,8 @@ function gameInitialize() {
     
     canvas.width = screenWidth;
     canvas.height = screenHeight;
+    
+    document.addEventListener("keydown", keyboardHandler);
 }
 
 function gameLoop() {
@@ -34,14 +36,14 @@ function gameLoop() {
 }
 
 function gameDraw() {
-    context.fillStyle = "gray";
+    context.fillStyle = "firebrick";
     context.fillRect(0, 0, screenWidth, screenHeight);
 }
 
 function snakeInitialize() {
     snake = [];
-    snakeLength = 10;
-    snakeSize = 5;
+    snakeLength = 2;
+    snakeSize = 1;
     snakeDirection = "down";
     
     for(var index = snakeLength - 1; index >= 0; index--) {
@@ -51,12 +53,12 @@ function snakeInitialize() {
        }); 
     }
 }
-
+ 
 function snakeDraw() {
     for(var index = 0; index < snake.length; index++){
-        context.fillStyle = "lime";
+        context.fillStyle = "red";
         context.fillRect(snake[index].x * snakeSize, snake[index].y * snakeSize, snakeSize, snakeSize);
-    }
+    }   
     
 }
 
@@ -66,6 +68,9 @@ function snakeUpdate() {
     
     if(snakeDirection == "down") {
         snakeHeadY++;
+    }
+    else{
+        snakeHeadX++;
     }
     
     var snakeTail = snake.pop();
@@ -83,7 +88,7 @@ function foodInitialize(){
 }
 
 function foodDraw(){
-    context.fillstyle = "lime";
+    context.fillstyle = "red";
     context.fillRect(food.x, food.y, snakeSize, snakeSize);
 }
 
@@ -94,4 +99,8 @@ function setFoodPostition(){
     
     food.x = randomX;
     food.y = randomY;
+}
+
+function keyboardHandler(event) {
+    console.log(event);
 }
