@@ -42,8 +42,8 @@ function gameDraw() {
 
 function snakeInitialize() {
     snake = [];
-    snakeLength = 2;
-    snakeSize = 1;
+    snakeLength = 15;
+    snakeSize = 20;
     snakeDirection = "down";
     
     for(var index = snakeLength - 1; index >= 0; index--) {
@@ -56,7 +56,7 @@ function snakeInitialize() {
  
 function snakeDraw() {
     for(var index = 0; index < snake.length; index++){
-        context.fillStyle = "red";
+        context.fillStyle = "white";
         context.fillRect(snake[index].x * snakeSize, snake[index].y * snakeSize, snakeSize, snakeSize);
     }   
     
@@ -87,8 +87,8 @@ function foodInitialize(){
     setFoodPostition();
 }
 
-function foodDraw(){
-    context.fillstyle = "red";
+function foodDraw() {
+    context.fillstyle = "blue";
     context.fillRect(food.x, food.y, snakeSize, snakeSize);
 }
 
