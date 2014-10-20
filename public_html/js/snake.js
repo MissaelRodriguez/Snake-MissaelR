@@ -36,7 +36,7 @@ function gameLoop() {
 }
 
 function gameDraw() {
-    context.fillStyle = "firebrick";
+    context.fillStyle = "black";
     context.fillRect(0, 0, screenWidth, screenHeight);
 }
 
@@ -56,7 +56,7 @@ function snakeInitialize() {
  
 function snakeDraw() {
     for(var index = 0; index < snake.length; index++){
-        context.fillStyle = "white";
+        context.fillStyle = "darkred";
         context.fillRect(snake[index].x * snakeSize, snake[index].y * snakeSize, snakeSize, snakeSize);
     }   
     
@@ -88,7 +88,7 @@ function foodInitialize(){
 }
 
 function foodDraw() {
-    context.fillstyle = "blue";
+    context.fillstyle = "darkred";
     context.fillRect(food.x, food.y, snakeSize, snakeSize);
 }
 
@@ -103,4 +103,8 @@ function setFoodPostition(){
 
 function keyboardHandler(event) {
     console.log(event);
+    
+    if(event) {
+        
+    }
 }
