@@ -9,6 +9,9 @@ var snakeDirection;
 var context;
 var screenWidth;
 var screenHeight;
+
+var gameState;
+
 /*-----------------------------------------------------------------------------
  * Function Callers- tell functions to activate.
  * ----------------------------------------------------------------------------
@@ -16,7 +19,7 @@ var screenHeight;
 gameInitialize();
 snakeInitialize();
 foodInitialize();
-setInterval(gameLoop, 100);
+setInterval(gameLoop, 65);
 /*-----------------------------------------------------------------------------
  * Functions- tell website what to do and can be used whenever.(these are game ones)
  * ----------------------------------------------------------------------------
@@ -33,6 +36,8 @@ function gameInitialize(){
     canvas.height = screenHeight;
    
    document.addEventListener("keydown", keyboardHandler);
+   
+   setState("PLAY");
 }
 /*-----------------------------------------------------------------------------
  * Function Caller that repeats the calls.
@@ -41,10 +46,12 @@ function gameInitialize(){
 
 function gameLoop() {
     gameDraw();
+    if(gameState == "PLAY") {
     snakeUpdate();
     snakeDraw();
     foodDraw();
-}
+       }
+  }
 /*-----------------------------------------------------------------------------
  * Continuation of game Functions
  * ----------------------------------------------------------------------------
@@ -61,16 +68,16 @@ function gameDraw() {
  */
 function snakeInitialize(){
     snake = [];
-    snakeLength = 3;
+    snakeLength = 1;
     snakeSize = 20;
      snakeDirection = "down";
     foodSize = 20;
     
-      for (var index = snakeLength - 1; index >= 0; index--){
-    snake.push({
-        x: index,
-        y: 0
-    });
+    for (var index = snakeLength - 1; index >= 0; index--) {
+        snake.push({
+            x: index,
+            y: 0
+        });
 }
     
 }
@@ -79,7 +86,7 @@ function snakeInitialize(){
 
 function snakeDraw(){
     for (var index = 0; index < snake.length; index++){
-        context.fillStyle = "darkred";
+        context.fillStyle = "red";
         context.fillRect(snake[index].x * snakeSize, snake[index].y * snakeSize, snakeSize, snakeSize);
     }
 }
@@ -144,14 +151,17 @@ function snakeUpdate(){
         
         if(event.keyCode == "68" && snakeDirection != "left") {    
             snakeDirection = "right";
-        }        
-        else if(event.keyCode == "65" && snakeDirection != "right") {
+        }  
+        
+        if(event.keyCode == "65" && snakeDirection != "right") {
             snakeDirection = "left";
         }       
-        else if(event.keyCode == "87" && snakeDirection != "down") {
+        
+        if(event.keyCode == "87" && snakeDirection != "down") {
             snakeDirection = "up";
         }
-        else if(event.keyCode == "83" && snakeDirection != "up") {
+        
+        if(event.keyCode == "83" && snakeDirection != "up") {
             snakeDirection = "down";
         }
     }
@@ -162,7 +172,7 @@ function snakeUpdate(){
     
     function checkFoodCollisions (snakeHeadX, snakeHeadY) {
         if(snakeHeadX === food.x && snakeHeadY === food.y){
-            console.log("get it");
+            console.log("yum");
             snake.push({
                 x: 0,
                 y: 0
@@ -175,5 +185,13 @@ function snakeUpdate(){
     function checkWallCollisions (snakeHeadX, snakeHeadY) {
         if(snakeHeadX >= screenWidth || snakeHeadX * snakeSize < 0) {
             console.log("wall collision");
+            setState("GAME OVER");
         };
     }
+    
+    
+    
+    function setState(state){
+        gameState = state;
+    }
+  
