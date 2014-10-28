@@ -6,7 +6,7 @@ body{
 #game-screen {
     display: block; 
 }
-#gameOver {
+#gameOver, #playHUD {
     position: absolute;
     visibility: hidden;
 }
@@ -25,4 +25,12 @@ body{
 
 #restartButton:hover {
     background-color: red;
+}
+
+h2{
+    
+}
+
+#scoreboard {
+    margin: 0px;
 }

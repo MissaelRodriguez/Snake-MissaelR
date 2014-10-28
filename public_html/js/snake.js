@@ -12,6 +12,9 @@ var screenHeight;
 
 var gameState;
 var gameOverMenu;
+var restartButton;
+var playHUD;
+var scoreboard;
 
 /*-----------------------------------------------------------------------------
  * Function Callers- tell functions to activate.
@@ -41,6 +44,12 @@ function gameInitialize(){
    gameOverMenu = document.getElementById("gameOver");
    centerMenuPosition(gameOverMenu);
    
+    restartButton = document.getElementById("restartButton");
+    restartButton.addEventListener("click", gameRestart);
+   
+    playHUD = document.getElementById("playHUD");
+   scoreboard = document.getElementById("scoreboard");
+   
    setState("PLAY");
 }
 /*-----------------------------------------------------------------------------
@@ -56,6 +65,7 @@ function gameLoop() {
     foodDraw();
        }
   }
+  drawScoreboard();
 /*-----------------------------------------------------------------------------
  * Continuation of game Functions
  * ----------------------------------------------------------------------------
@@ -66,13 +76,20 @@ function gameDraw() {
     
     
 }
+function gameRestart() {
+    snakeInitialize();
+    foodInitialize();
+    hideMenu(gameOverMenu);
+    setState("PLAY");
+}
+
 /*-----------------------------------------------------------------------------
  * snake Functions
  * ----------------------------------------------------------------------------
  */
 function snakeInitialize(){
     snake = [];
-    snakeLength = 2;
+    snakeLength = 1;
     snakeSize = 20;
      snakeDirection = "down";
     foodSize = 20;
@@ -90,7 +107,7 @@ function snakeInitialize(){
 
 function snakeDraw(){
     for (var index = 0; index < snake.length; index++){
-        context.fillStyle = "yellow";
+        context.fillStyle = "orange";
         context.fillRect(snake[index].x * snakeSize, snake[index].y * snakeSize, snakeSize, snakeSize);
     }
 }
@@ -132,7 +149,7 @@ function snakeUpdate(){
     }
     
     function foodDraw(){
-         context.fillStyle = "orange";
+         context.fillStyle = "firebrick";
         context.fillRect(food.x * snakeSize, food.y * snakeSize, foodSize, foodSize);
     }
     
@@ -209,14 +226,24 @@ function snakeUpdate(){
        menu.style.visibility = "visible";
    }
    
+   function hideMenu(menu){
+       menu.style.visibility = "hidden";
+   }
    
    function showMenu(state) {
        if(state == "GAME OVER") {
            displayMenu(gameOverMenu)
+       }
+       else if(state == "PLAY") {
+          displayMenu(playHUD); 
        }
    }
    
    function centerMenuPosition(menu) {
        menu.style.top = (screenHeight / 2) - (menu.offsetHeight / 2) + "px";
        menu.style.left = (screenWidth / 2) - (menu.offsetWidth / 2) + "px";
+   }
+   
+   function drawScoreboard() {
+       scoreboard.innerHTML = "Score" + snakeLength;
    }
