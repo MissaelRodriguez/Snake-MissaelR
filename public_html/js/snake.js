@@ -11,6 +11,7 @@ var screenWidth;
 var screenHeight;
 
 var gameState;
+var gameOverMenu;
 
 /*-----------------------------------------------------------------------------
  * Function Callers- tell functions to activate.
@@ -36,6 +37,9 @@ function gameInitialize(){
     canvas.height = screenHeight;
    
    document.addEventListener("keydown", keyboardHandler);
+   
+   gameOverMenu = document.getElementById("gameOver");
+   centerMenuPosition(gameOverMenu);
    
    setState("PLAY");
 }
@@ -68,7 +72,7 @@ function gameDraw() {
  */
 function snakeInitialize(){
     snake = [];
-    snakeLength = 1;
+    snakeLength = 2;
     snakeSize = 20;
      snakeDirection = "down";
     foodSize = 20;
@@ -86,7 +90,7 @@ function snakeInitialize(){
 
 function snakeDraw(){
     for (var index = 0; index < snake.length; index++){
-        context.fillStyle = "red";
+        context.fillStyle = "yellow";
         context.fillRect(snake[index].x * snakeSize, snake[index].y * snakeSize, snakeSize, snakeSize);
     }
 }
@@ -128,7 +132,7 @@ function snakeUpdate(){
     }
     
     function foodDraw(){
-         context.fillStyle = "lime";
+         context.fillStyle = "orange";
         context.fillRect(food.x * snakeSize, food.y * snakeSize, foodSize, foodSize);
     }
     
@@ -141,27 +145,27 @@ function snakeUpdate(){
     }
     
     /*-------------------------------------------------------------------------
-     * Input Functions /  snake direction keys  WASD = 68R 65L 87U 83D  
-     *                                   arrows keys = 38U 37L 40D 39R     
+     * Input Functions /  snake direction keys  W.A.S.D. = 68R, 65L, 87U, 83D  
+     *                                   arrows keys = 38U, 37L, 40D, 39R     
      * ------------------------------------------------------------------------
      */
     
     function keyboardHandler(event) {
         console.log(event);
         
-        if(event.keyCode == "68" && snakeDirection != "left") {    
+        if(event.keyCode == "39" && snakeDirection != "left") {    
             snakeDirection = "right";
         }  
         
-        if(event.keyCode == "65" && snakeDirection != "right") {
+        if(event.keyCode == "37" && snakeDirection != "right") {
             snakeDirection = "left";
         }       
         
-        if(event.keyCode == "87" && snakeDirection != "down") {
+        if(event.keyCode == "38" && snakeDirection != "down") {
             snakeDirection = "up";
         }
         
-        if(event.keyCode == "83" && snakeDirection != "up") {
+        if(event.keyCode == "40" && snakeDirection != "up") {
             snakeDirection = "down";
         }
     }
@@ -172,7 +176,7 @@ function snakeUpdate(){
     
     function checkFoodCollisions (snakeHeadX, snakeHeadY) {
         if(snakeHeadX === food.x && snakeHeadY === food.y){
-            console.log("yum");
+            console.log("yumm");
             snake.push({
                 x: 0,
                 y: 0
@@ -193,5 +197,26 @@ function snakeUpdate(){
     
     function setState(state){
         gameState = state;
+        showMenu(state);
     }
-  
+   
+    /*-------------------------------------------------------------------------
+     * Menu Functiions
+     * ------------------------------------------------------------------------
+     */
+   
+   function displayMenu(menu){
+       menu.style.visibility = "visible";
+   }
+   
+   
+   function showMenu(state) {
+       if(state == "GAME OVER") {
+           displayMenu(gameOverMenu)
+       }
+   }
+   
+   function centerMenuPosition(menu) {
+       menu.style.top = (screenHeight / 2) - (menu.offsetHeight / 2) + "px";
+       menu.style.left = (screenWidth / 2) - (menu.offsetWidth / 2) + "px";
+   }

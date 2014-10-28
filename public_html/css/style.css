@@ -6,3 +6,23 @@ body{
 #game-screen {
     display: block; 
 }
+#gameOver {
+    position: absolute;
+    visibility: hidden;
+}
+
+.title{
+    font-size: 65px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+     color: red;
+}
+
+#restartButton {
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#restartButton:hover {
+    background-color: red;
+}
