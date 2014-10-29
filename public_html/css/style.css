@@ -1,6 +1,8 @@
 body{
     margin: 0;
     padding: 0;
+    color: darkred;
+    font-size: 20px;
 }
 
 #game-screen {
@@ -18,13 +20,14 @@ body{
      color: red;
 }
 
-#restartButton {
+#playAgainButton {
     border: 2px solid white;
     border-radius: 10px;
 }
 
-#restartButton:hover {
+#playAgainButton:hover {
     background-color: red;
+    
 }
 
 h2{
