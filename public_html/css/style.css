@@ -3,7 +3,7 @@ body{
     padding: 0;
     color: darkred;
     font-size: 20px;
-    font-style: oblique;
+    font-family: monospace;
 }
 
 #game-screen {
@@ -22,7 +22,7 @@ This changes the margin on the top and bottom screen
     margin-bottom: 0px;
     margin-top: 0px;
     color: red;
-    font-style: italic;
+    font-family: fantasy;
 }
   /*----------------------------------------------------------------------------
   This changes the color of the play again button 
@@ -31,7 +31,7 @@ This changes the margin on the top and bottom screen
 #playAgainButton {
     border: 2px solid darkred;
     border-radius: 10px;
-    font: cursive;
+    font-family: cursive;
 }
 
 #playAgainButton:hover {
