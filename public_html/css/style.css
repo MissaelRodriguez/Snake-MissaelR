@@ -3,6 +3,7 @@ body{
     padding: 0;
     color: darkred;
     font-size: 20px;
+    font-style: oblique;
 }
 
 #game-screen {
@@ -12,17 +13,25 @@ body{
     position: absolute;
     visibility: hidden;
 }
-
+/*------------------------------------------------------------------------------
+This changes the margin on the top and bottom screen
+  ------------------------------------------------------------------------------
+*/
 .title{
     font-size: 65px;
     margin-bottom: 0px;
     margin-top: 0px;
     color: red;
+    font-style: italic;
 }
-
+  /*----------------------------------------------------------------------------
+  This changes the color of the play again button 
+    ----------------------------------------------------------------------------
+  */
 #playAgainButton {
     border: 2px solid darkred;
     border-radius: 10px;
+    font: cursive;
 }
 
 #playAgainButton:hover {
@@ -33,7 +42,10 @@ body{
 h2{
 
 }
-
+/*------------------------------------------------------------------------------
+puts color and a border on the score board
+  ------------------------------------------------------------------------------
+*/
 #scoreboard {
     margin: 0px;
     border: 2px solid red;

@@ -12,6 +12,7 @@ var screenHeight;
 
 var gameState;
 var gameOverMenu;
+
 var playAgainButton;
 var playHUD;
 var scoreboard;
@@ -23,7 +24,7 @@ var scoreboard;
 gameInitialize();
 snakeInitialize();
 foodInitialize();
-setInterval(gameLoop, 75);
+setInterval(gameLoop, 40);
 /*-----------------------------------------------------------------------------
  * Functions- tell website what to do and can be used whenever.(these are game ones)
  * ----------------------------------------------------------------------------
@@ -43,7 +44,7 @@ function gameInitialize() {
 
     gameOverMenu = document.getElementById("gameOver");
     centerMenuPosition(gameOverMenu);
-
+    
     playAgainButton = document.getElementById("playAgainButton");
     playAgainButton.addEventListener("click", gamePlayAgain);
 
@@ -80,6 +81,7 @@ function gameDraw() {
 function gamePlayAgain() {
     snakeInitialize();
     foodInitialize();
+   
     hideMenu(gameOverMenu);
     setState("PLAY");
 }
